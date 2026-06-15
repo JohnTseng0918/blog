@@ -1,0 +1,15 @@
+weight = 1
+title = "John's Blog"
+
+[params]
+  locale = "en"
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2006-01-02"
+  description = "科技業工程師 生活中的隨筆"
+
+[params.author]
+  name = "John"
+  headline = "Software Engineer"
+  bio = "科技業工程師 生活中的隨筆"
