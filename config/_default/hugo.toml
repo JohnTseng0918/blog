@@ -1,9 +1,10 @@
 theme = "blowfish"
-baseURL = "https://example.com"
+baseURL = "https://johntseng0918.github.io/blog/"
 defaultContentLanguage = "en"
 
 enableRobotsTXT = true
 enableEmoji = true
+titleCaseStyle = "none"
 summaryLength = 30
 hasCJKLanguage = true
 
