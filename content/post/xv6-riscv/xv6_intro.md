@@ -3,7 +3,7 @@ title: "xv6-riscv 學習筆記"
 date: 2026-06-19
 draft: false
 description: "MIT 6.S081 / xv6-riscv 作業系統學習筆記"
-tags: ["xv6", "RISC-V", "kernel"]
+tags: ["xv6", "riscv", "kernel"]
 categories: ["作業系統"]
 ---
 
