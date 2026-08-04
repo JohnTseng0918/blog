@@ -81,7 +81,7 @@ int *ptr = (int *)&v;       // 強制拔掉 const
 
 這是 `const` 最容易搞混的地方。先看規格怎麼定調。
 
-**規格的說法**
+### 規格怎麼定調
 
 C99 [6.2.5] EXAMPLE:
 
@@ -103,7 +103,7 @@ C99 [6.7.5.1] EXAMPLE:
 >
 > The contents of any object pointed to by `ptr_to_constant` shall not be modified through that pointer, but `ptr_to_constant` itself may be changed to point to another object. Similarly, the contents of the `int` pointed to by `constant_ptr` may be modified, but `constant_ptr` itself shall always point to the same location.
 
-**記憶法:從變數名往右到左讀**
+### 記憶法:從變數名往左讀
 
 遇到 `*` 就唸「pointer to」:
 
@@ -132,7 +132,7 @@ p2 = &b;       // ✗ 編譯錯誤:不能改指標本身
   - `const int *` → `const` 左邊沒東西,所以修飾 `int`(指到的值是 const)
   - `int *const` → `const` 左邊是 `*`,所以修飾指標本身
 
-**用 typedef 驗證**
+### 用 typedef 驗證
 
 C99 [6.7.5.1] 接著給了一個很好的驗證方式:
 
@@ -200,7 +200,7 @@ enum { SIZE = 10 };
 
 ## 常見的坑
 
-**1. `char **` 不能隱式轉成 `const char **`**
+### `char **` 不能隱式轉成 `const char **`
 
 單層的 `char *` → `const char *` 是合法的隱式轉換,但多一層之後就不行了:
 
@@ -211,7 +211,7 @@ char *arr[10];
 f(arr);          // ✗ constraint violation(GCC 預設給 warning)
 ```
 
-### 為什麼危險
+#### 為什麼危險
 
 規格直接舉了例子說明。C99 [6.5.16.1] EXAMPLE 3:
 
@@ -238,7 +238,7 @@ f(arr);          // ✗ constraint violation(GCC 預設給 warning)
 - compiler 沒辦法在第 2、3 行抓到問題(那時型別資訊已經合法了),所以標準選擇**在源頭第 1 行就擋掉**
 - 要真的傳過去,只能明確寫 cast,等於你自己簽名擔保安全
 
-### 規格憑什麼擋
+#### 規格憑什麼擋
 
 EXAMPLE 只說了「unsafe」,真正的依據在同一節的 Constraints。C99 [6.5.16.1] p1 列出賦值合法的六種情形,和指標有關的是第三條:
 
@@ -306,7 +306,7 @@ cpp = &p;            // ✗ constraint violation
 - 也就是右邊**頂層**的 qualifier 在取值時就被丟掉了,所以 `const int x; int y = x;` 當然合法
 - 既然頂層 qualifier 對右邊不具意義,約束自然只能是單向的 —— 這也是為什麼 (b) 談的是「**指到的**型別」的 qualifier,而不是運算元本身的
 
-**2. `const` 不代表值不會變**
+### `const` 不代表值不會變
 
 `const` 只是承諾「**我不會透過這個名字改它**」,不代表這塊記憶體真的不會變:
 
@@ -317,7 +317,7 @@ const volatile uint32_t *status_reg;
 - 這是硬體唯讀狀態暫存器的典型宣告:我的程式不會寫它(`const`),但硬體會改它(`volatile`)
 - 所以 compiler 不能因為 `const` 就把讀取 optimize 掉
 
-**3. 成員是 const 的 struct 不能整個賦值**
+### 含 const 成員的 struct 不能整體賦值
 
 回到 ② 的 modifiable lvalue 定義,裡面那句 **including, recursively** 是關鍵:只要 struct 或 union 裡(遞迴地)包含任何 const-qualified 的成員,**整個 struct 物件**就不再是 modifiable lvalue。
 
