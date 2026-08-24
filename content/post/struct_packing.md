@@ -7,7 +7,7 @@ tags: ["c", "alignment", "struct", "memory"]
 categories: ["程式語言"]
 ---
 
-整理自 [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)。規格層面的定義另外整理在 [alignment]({{< ref "alignment.md" >}})。
+整理自 [The Lost Art of Structure Packing](http://www.catb.org/esr/structure-packing/)。規格層面的定義另外整理在 [alignment]({{< ref "/post/c-language/alignment.md" >}})。
 
 ## self-alignment
 
