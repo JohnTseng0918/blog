@@ -68,14 +68,19 @@ int *ptr = (int *)&v;       // 強制拔掉 const
 *ptr = 20;                  // 未定義行為
 ```
 
-- 實務上很可能直接 crash:compiler 可以把 `const` 物件放進唯讀的 `.rodata` section,寫進去就是 segfault
-- 就算沒 crash,compiler 也可能因為「它是 const,值不會變」而把 `v` 的值直接內嵌進程式碼,後面讀到的還是 `10`
+為什麼標準把它訂成 UB,而不是要求 compiler 報錯?因為同一節還給了實作很大的空間。C99 [6.7.3]:
 
-> **② 和 ③ 的差別很重要**
-> - ② 是 **constraint violation** —— compiler 一定要給診斷訊息,你當場就編不過
-> - ③ 是 **undefined behavior** —— compiler 沒義務抓,編得過、跑起來才炸
->
-> 所以「cast 掉 const」危險的地方不在於它繞過檢查,而在於它把編譯期錯誤變成執行期的未定義行為。
+> The implementation may place a const object that is not volatile in a read-only region of storage. Moreover, the implementation need not allocate storage for such an object if its address is never used.
+
+- 非 `volatile` 的 `const` 物件,實作**可以**把它放進唯讀的儲存區
+- 如果這個物件的位址從來沒被取用過,實作**可以**完全不幫它配置空間
+
+這兩條許可,正好對應到實務上會踩到的兩種結果:
+
+- **直接 crash**:`const` 物件被放進唯讀的 `.rodata` section,寫進去就是 segfault
+- **改了卻沒效果**:compiler 認定「它是 const,值不會變」,把 `v` 的值直接內嵌進程式碼,後面讀到的還是 `10`
+
+② 是 constraint violation,compiler 一定要給診斷訊息,你當場就編不過;③ 是 undefined behavior,compiler 沒義務抓,編得過、跑起來才炸。所以 cast 掉 const 危險的地方不在於它繞過檢查,而在於它把編譯期錯誤變成執行期的未定義行為。
 
 ## 指標上的 const 怎麼讀
 
@@ -192,7 +197,7 @@ struct { int a[SIZE]; } s;  // ✗ 編譯錯誤
 - 需要真正的編譯期常數,用 `#define` 或 `enum`:
 
 ```c
-#define SIZE 10
+#define SIZE 10       // 擇一即可,兩者同時寫會展開成 enum { 10 = 10 }
 enum { SIZE = 10 };
 ```
 

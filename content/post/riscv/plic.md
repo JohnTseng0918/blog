@@ -7,10 +7,7 @@ tags: ["riscv", "plic", "interrupt"]
 categories: ["riscv"]
 ---
 
-## 前言
-
-- 這篇是讀 [riscv-plic-spec](https://github.com/riscv/riscv-plic-spec) v1.0.0 的筆記
-- 每段先放規格書原文,再放自己的理解
+[riscv-plic-spec](https://github.com/riscv/riscv-plic-spec)
 
 ## PLIC 是什麼
 
