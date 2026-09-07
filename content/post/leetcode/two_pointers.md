@@ -1,8 +1,8 @@
 ---
 title: "Two Pointers 雙指標"
-date: 2026-08-15
+date: 2026-09-08
 draft: false
-description: "雙指標/對撞指標解題,含 Container With Most Water、3Sum、Valid Palindrome"
+description: "雙指標/對撞指標解題,含 Container With Most Water、3Sum、Remove Duplicates、Valid Palindrome"
 tags: ["leetcode", "two-pointers"]
 categories: ["演算法"]
 ---
@@ -21,6 +21,17 @@ categories: ["演算法"]
 - 這題比較麻煩的事情是不能重複，所以第一個for，就要和array前位比較，相同就continue
 - 2 pointer的時候也是，如果找到正解，位移一個也是需要比較有沒有相同，相同就有可能重複
 
+## 26. Remove Duplicates from Sorted Array
+
+- 給定一個array，這是非嚴格遞增的array，要把重複的元素移除，最後回傳有k個不同的元素，並且這題需要in-place操作
+- 這題用two-pointer角度出發解題最美，想像一個指標指著已經整理好的array，另一個隨著迴圈，掃過所有數字
+- 我們先需要一個左指標記錄index，然後迴圈內部，直接比較nums[i]和nums[left_index]有沒有相同，當然我們不能比較同個index，所以迴圈要從第二個開始
+- 如果nums[i]和nums[left_index]相同，那就是沒事，然後i就會往前一格
+- 如果nums[i]和nums[left_index]不同，就要把nums[left_index] = nums[i]，然後left_index++，這樣就達到了把不同的元素放到array前面的作法
+- 最後回傳left_index + 1，因為這個指標是指著result array的尾巴，然後0-index，所以會少1
+- 時間複雜度 O(n)，很單純就是一個迴圈
+- 進階題: 80
+
 ## 42. Trapping Rain Water
 
 - 給定一個vector<int>，代表的意義是牆壁高度，目標是要回傳可以裝多少水
@@ -32,6 +43,17 @@ categories: ["演算法"]
 - 右高亦然
 - 然後每次判斷左高和右高誰高，就移動低的那個index
 
+## 80. Remove Duplicates from Sorted Array II
+
+- 這題和26相似，差別就是可以允許有兩個相同元素，多的都要移除
+- 兩個pointer思維是相近的，一個是整理好的array的下一個index，另一個就是迴圈index
+- 注意left_index和迴圈index都要從2開始，所以開頭要先判斷，如果array長度小於等於2就直接回傳長度，不然nums[left_index - 2]會存取越界
+- 同樣是一個迴圈，只是裡面的判斷不同，是判斷nums[i]和nums[left_index - 2]
+- 如果nums[i]和nums[left_index - 2]相同，代表nums[i]和nums[left_index - 1]也相同，這樣就會有三個同樣元素了，所以這情況下，就不能把nums[i]取進去，不做事讓i自然++
+- 如果nums[i]和nums[left_index - 2]不同，就代表可能有一個nums[i]這個元素，或者是兩個，這樣合法
+- 最後回傳left_index，因為一開始的指標就是指向整理好的array的下一個index
+- 時間複雜度 O(n)，很單純就是一個迴圈
+
 ## 125. Valid Palindrome
 
 - 這題目標就是判斷一個字串扣除空白及符號後是否回文，並且忽略大小寫
@@ -39,7 +61,7 @@ categories: ["演算法"]
     - isalnum: 這是用來知道是否是字母或是數字
     - tolower: 這是轉成小寫
 - 想法其實很簡單，使用左右指標，指向字串頭和字串尾
-- 使用while迴圈判斷使否左<右
+- 使用while迴圈判斷是否左<右
     - 如果不是字母數字就移動並且continue
     - 如果不一樣就return false
-    - 一樣就left++, right—
+    - 一樣就left++, right--
