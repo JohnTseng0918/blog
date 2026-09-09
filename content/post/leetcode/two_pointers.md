@@ -1,6 +1,6 @@
 ---
 title: "Two Pointers 雙指標"
-date: 2026-09-08
+date: 2026-09-09
 draft: false
 description: "雙指標/對撞指標解題,含 Container With Most Water、3Sum、Remove Duplicates、Valid Palindrome"
 tags: ["leetcode", "two-pointers"]
@@ -53,6 +53,23 @@ categories: ["演算法"]
 - 如果nums[i]和nums[left_index - 2]不同，就代表可能有一個nums[i]這個元素，或者是兩個，這樣合法
 - 最後回傳left_index，因為一開始的指標就是指向整理好的array的下一個index
 - 時間複雜度 O(n)，很單純就是一個迴圈
+
+## 88. Merge Sorted Array
+
+- 這題給定兩個已排序過非遞減的array，然後要merge成一個array，合併到array1
+- array1後面已經預留了array2長度的空位，這是這題可以從後面往前填的前提
+- 這類題目最簡單的想法就是2-pointer，然後元素被選擇之後就會移動一格pointer
+- 思維被僵化住的話，就會想著要從第一個element開始:
+  - 這樣有個問題，array1如果要有元素放進來，就要全部搬動嗎?
+  - 換個方向，如果pointer指向最後一個元素，大排到小
+  - 那選到的最大的值，我就從array1的最後擺回來，就不會強碰原本array1的內容
+- 使用一個迴圈，外層判斷我們使用index2 >= 0
+  - 理由是如果index2排完了，那剩下array1的東西當然也不用排
+- 內層就是單純的比較元素大小，大的就放到array1[index]的位置
+- 每次迴圈都會放元素，所以每次index都會--
+- 記得也要判斷index1，不然array會越界
+- 這題觀念簡單，但其實細節還滿多的，值得多想一下
+- 時間複雜度是單純的 O(m + n)
 
 ## 125. Valid Palindrome
 

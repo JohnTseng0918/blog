@@ -1,11 +1,28 @@
 ---
 title: "Dynamic Programming 動態規劃"
-date: 2026-08-15
+date: 2026-09-09
 draft: false
 description: "DP 入門題,含 Climbing Stairs、Best Time to Buy and Sell Stock、Counting Bits"
 tags: ["leetcode", "dynamic-programming"]
 categories: ["演算法"]
 ---
+
+## 53. Maximum Subarray
+
+- 給定一個array，找出subarray sum的最大值
+- Kadane's Algorithm
+- 如果是暴力法，那就是兩層迴圈可以搞定的問題 O(n^2)
+- 這題也可以使用prefix sum的觀念來解
+  - 就會變成一個prefix_sum_array，要找出prefix_sum_array[i] - prefix_sum_array[j]最大值，當 i > j
+  - 這就是被reduce成121題了
+  - 邏輯就是prefix sum array elements相減，那就是該subarray的和
+  - O(n)
+- DP解法:
+  - 定義sub是「以nums[i]結尾」的maximum subarray sum，注意不是「前i個元素」的答案
+  - 走到i只有兩個選擇: 接在前一段後面，或是從自己重新開始一段
+  - sub = max(sub + nums[i], nums[i])
+  - 真正的答案再拿每一個sub去更新: res = max(res, sub)
+  - O(n)
 
 ## 70. Climbing Stairs
 
@@ -21,15 +38,16 @@ categories: ["演算法"]
 
 - 給定一個股價list，要找出買和賣可以賺最多錢的一次交易組合
     - 也就是只買賣一次，如果找不到賺錢組合，就回傳0
+- Kadane's Algorithm
 - 因為要最大化交易，就是要找出左邊最小，右邊最大的一組
 - 可以透過一個for迴圈
     - 反向思考: index大到小
-        - 找出最大的值，就先存起來
-        - 如果比最大的值小，就和存起來的最大值相減，和結果比較
+        - max_val = max(max_val, nums[i])
+        - res = max(res, max_val - nums[i])
     - 正向思考: index小到大
-        - 找出最小值，先存起來
-        - 如果比最小值大，就和存起來的最大值相減，和結果比較
-        - 如果比最小值小，就存起來
+        - min_val = min(min_val, nums[i])
+        - res = max(res, nums[i] - min_val)
+- O(n)
 
 ## 338. Counting Bits
 
