@@ -7,16 +7,24 @@ tags: ["leetcode", "prefix-sum"]
 categories: ["演算法"]
 ---
 
-## 560. Subarray Sum Equals K
+## 238. Product of Array Except Self
 
-- 目標是輸入一個vector<int>，以及一個target K
-- 要回傳總共有幾個subarray的總和等於K
-- 使用prefix sum可以快速query兩個index之間的總和
-- 但是因為每一個subarray都有可能總和是K
-- 這樣就會導致O(N^2)的複雜度
-- 所以使用一個map去做紀錄，記錄的是這個prefix sum數字出現的次數
-- 並且每一個迴圈在看的時候，就是看該prefix sum[index] - K有沒有出現過
-- 有的話就把出現次數加到答案裡面
+- 這題的目標是給定一個array，然後回傳output是其他elements的乘積
+- 並且限定要在時間複雜度O(n)
+- 暴力法太簡單了就先跳過，直接從prefix sum的解題手法開始思考
+  - prefix sum 通常是一路加到該項元素
+  - 這題要乘積，我們就是一路乘到該項元素
+  - 但我們要排除這項元素，那當然就是可以做"位移"
+    - elememt 1 的 prefix product 就是 第0項，也就是1
+    - elememt n 的 prefix product 就是 第n-1項，也就是1~n-1乘積
+  - 另一個方向來思考，那第n項也需要n+1項，當然也就是1
+  - 第一項的 suffix product 就是 2~n的乘積
+- 最後把兩個相乘即是解答
+- 時間複雜度是兩個for迴圈，也就是O(n)
+- 接下來的follow up 可以optimize空間複雜度
+  - 計算prefix/suffix product可以不用把東西記下來
+  - 第一個迴圈計算prefix product，只要記錄前一個是多少，然後把結果也乘進去解答裡面就好了
+  - 第二個迴圈計算suffix product同理
 
 ## 525. Contiguous Array
 
@@ -27,6 +35,17 @@ categories: ["演算法"]
 - 用一個map去記錄總和的index，而且是最早出現的index
 - 後面如果出現相同總和，那和index相減就是一段subarray總和是0
 - 注意mp[0] = -1，不然碰到第一個0會無法找出長度
+
+## 560. Subarray Sum Equals K
+
+- 目標是輸入一個vector<int>，以及一個target K
+- 要回傳總共有幾個subarray的總和等於K
+- 使用prefix sum可以快速query兩個index之間的總和
+- 但是因為每一個subarray都有可能總和是K
+- 這樣就會導致O(N^2)的複雜度
+- 所以使用一個map去做紀錄，記錄的是這個prefix sum數字出現的次數
+- 並且每一個迴圈在看的時候，就是看該prefix sum[index] - K有沒有出現過
+- 有的話就把出現次數加到答案裡面
 
 ## 930. Binary Subarrays With Sum
 
