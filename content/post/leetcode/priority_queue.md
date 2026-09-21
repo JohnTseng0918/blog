@@ -2,18 +2,10 @@
 title: "Priority Queue 優先佇列"
 date: 2026-08-15
 draft: false
-description: "以優先佇列(heap)解 Top-K 類問題,含 347、373、378"
+description: "以優先佇列(heap)解 Top-K 類問題,含 373、378"
 tags: ["leetcode", "priority-queue", "heap"]
 categories: ["演算法"]
 ---
-
-## 347. Top K Frequent Elements
-
-- 這題是給定一個array，回傳出現頻率最高的K個數字
-- 那這題就是先用一個map把頻率記錄起來
-- 然後每個map的key value pair放到priority queue裡面
-- 這個困難點是要知道C++ priority queue怎麼寫
-- 最後把K個item從priority queue中取出來就是答案
 
 ## 373. Find K Pairs with Smallest Sums
 
