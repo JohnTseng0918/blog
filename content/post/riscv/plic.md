@@ -1,5 +1,5 @@
 ---
-title: "RISC-V PLIC(Platform-Level Interrupt Controller)"
+title: "RISC-V PLIC (Platform-Level Interrupt Controller)"
 date: 2026-08-18
 draft: false
 description: "PLIC 規格閱讀筆記:hart context、interrupt gateway、interrupt notification、interrupt flow 與 operation parameter registers"
