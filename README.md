@@ -2,7 +2,7 @@
 
 ## [Hugo](https://gohugo.io/)
 - Use Hugo for blog framework
-- Theme: [Blowfish](https://github.com/nunocoracao/blowfish) (requires Hugo **extended**, v0.158+)
+- Theme: [Blowfish](https://github.com/nunocoracao/blowfish) (requires Hugo **extended**, v0.164–v0.167)
 ```
 # install hugo (extended version required by the Blowfish theme)
 sudo snap install hugo
@@ -21,8 +21,8 @@ hugo server
 The snap package fails to start under WSL2 (snap confinement isn't supported).
 Install the official extended `.deb` instead:
 ```
-# pick a version >= 0.158 (matching the CI HUGO_VERSION is recommended)
-HUGO_VERSION=0.163.1
+# pick a version within 0.164–0.167 (matching the CI HUGO_VERSION is recommended)
+HUGO_VERSION=0.167.0
 curl -LO https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
 sudo dpkg -i hugo_extended_${HUGO_VERSION}_linux-amd64.deb
 ```
