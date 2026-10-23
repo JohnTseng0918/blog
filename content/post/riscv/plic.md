@@ -1,10 +1,11 @@
 ---
 title: "RISC-V PLIC (Platform-Level Interrupt Controller)"
 date: 2026-08-18
+lastmod: 2026-10-23
 draft: false
 description: "PLIC 規格閱讀筆記:hart context、interrupt gateway、interrupt notification、interrupt flow 與 operation parameter registers"
 tags: ["riscv", "plic", "interrupt"]
-categories: ["riscv"]
+categories: ["計算機架構"]
 ---
 
 [riscv-plic-spec](https://github.com/riscv/riscv-plic-spec)

@@ -27,7 +27,7 @@ smartTOC = true
 
 [article]
   showDate = true
-  showDateUpdated = false
+  showDateUpdated = true
   showAuthor = true
   showReadingTime = true
   showTableOfContents = true

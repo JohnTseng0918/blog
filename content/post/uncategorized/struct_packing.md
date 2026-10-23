@@ -1,6 +1,8 @@
 ---
 title: "C struct 的 padding 與 packing"
 date: 2026-08-24
+lastmod: 2026-10-23
+aliases: ["/post/struct_packing/"]
 draft: false
 description: "self-alignment、padding 從哪來、stride address、bitfield 的坑,以及重排成員來縮小 struct 的技巧與代價"
 tags: ["c", "alignment", "struct", "memory"]

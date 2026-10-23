@@ -1,17 +1,43 @@
 [[main]]
-  name = "Posts"
+  name = "筆記"
+  identifier = "notes"
   pageRef = "post"
   weight = 10
+
+  [[main]]
+    name = "RISC-V"
+    parent = "notes"
+    pageRef = "post/riscv"
+    weight = 10
+
+  [[main]]
+    name = "xv6"
+    parent = "notes"
+    pageRef = "post/xv6-riscv"
+    weight = 20
+
+  [[main]]
+    name = "C 語言"
+    parent = "notes"
+    pageRef = "post/c-language"
+    weight = 30
+
+  [[main]]
+    name = "LeetCode"
+    parent = "notes"
+    pageRef = "post/leetcode"
+    weight = 40
+
+  [[main]]
+    name = "未分類"
+    parent = "notes"
+    pageRef = "post/uncategorized"
+    weight = 90
 
 [[main]]
   name = "Archive"
   pageRef = "archive"
   weight = 30
-
-[[main]]
-  name = "Search"
-  pageRef = "search"
-  weight = 40
 
 [[main]]
   name = "About"

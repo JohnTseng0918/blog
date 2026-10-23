@@ -1,6 +1,11 @@
 ---
-layout: page
-multilingual: true
+title: "About"
+showDate: false
+showDateUpdated: false
+showAuthor: false
+showReadingTime: false
+showTableOfContents: false
+showPagination: false
 ---
 
 ## About Me

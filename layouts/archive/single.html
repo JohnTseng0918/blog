@@ -1,0 +1,30 @@
+{{/* Archive page: every post in mainSections, grouped by year (newest first). */}}
+{{ define "main" }}
+  <article class="max-w-full">
+    <header>
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        {{ .Title | emojify }}
+      </h1>
+    </header>
+    {{ with .Content }}
+      <section class="max-w-full mt-6 prose dark:prose-invert">{{ . }}</section>
+    {{ end }}
+    {{ $pages := where site.RegularPages "Section" "in" site.Params.mainSections }}
+    {{ range $pages.GroupByDate "2006" }}
+      <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
+        {{ .Key }}
+      </h2>
+      <ul class="mt-4 space-y-2">
+        {{ range .Pages }}
+          <li class="flex gap-4">
+            <time class="shrink-0 text-neutral-500 dark:text-neutral-400" datetime="{{ .Date.Format "2006-01-02" }}">
+              {{ .Date.Format "01-02" }}
+            </time>
+            <a class="text-neutral-800 hover:text-primary-600 dark:text-neutral-200 dark:hover:text-primary-400"
+              href="{{ .RelPermalink }}">{{ .Title | emojify }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+  </article>
+{{ end }}

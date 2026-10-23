@@ -1,6 +1,6 @@
 ---
-title: "Posts Archive"
+title: "Archive"
 layout: archive
 type: archive
-description: Archive of historical posts.
+description: "所有文章，依年份排列"
 ---

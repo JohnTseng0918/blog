@@ -1,10 +1,11 @@
 ---
 title: "RISC-V CLIC (Core-Local Interrupt Controller)"
 date: 2026-10-03
+lastmod: 2026-10-23
 draft: false
 description: "CLIC 規格閱讀筆記"
 tags: ["riscv", "clic", "interrupt"]
-categories: ["riscv"]
+categories: ["計算機架構"]
 ---
 
 ## CLIC

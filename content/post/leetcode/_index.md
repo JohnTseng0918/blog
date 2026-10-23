@@ -1,6 +1,7 @@
 ---
 title: "LeetCode 刷題筆記"
 date: 2026-08-15
+lastmod: 2026-10-23
 draft: false
 description: "以解題 pattern 為單位整理的 LeetCode 刷題筆記"
 ---
@@ -18,7 +19,7 @@ description: "以解題 pattern 為單位整理的 LeetCode 刷題筆記"
 2. **題目小節** — 每題記「卡點 → 解法 → 和前一題的差別」
 3. **小結** — 這類題的共通判斷:看到什麼特徵就該想到它
 
-> 相關的資料結構/演算法原理,整理在 [DSA 筆記](../../dsa/) 裡。
+> 相關的資料結構/演算法原理，之後會另外整理成 DSA 筆記。
 
 ---
 
